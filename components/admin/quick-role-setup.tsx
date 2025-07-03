@@ -1,7 +1,7 @@
 "use client"
 
 import { useAccount } from "wagmi"
-import { useUserRegistry, ROLES } from "@/web3/hooks/useUserRegistry"
+import { useUserRegistry, ROLES } from "@/web3"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Alert, AlertDescription } from "@/components/ui/alert"
