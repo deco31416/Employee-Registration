@@ -4,6 +4,8 @@ import { useEffect, useState } from "react"
 import { Web3Provider } from "@/web3/providers/web3-provider"
 import { WalletConnection } from "@/components/wallet/wallet-connection"
 import { RoleChecker } from "@/components/admin/role-checker"
+import { QuickRoleSetup } from "@/components/admin/quick-role-setup"
+import { RoleManagement } from "@/components/admin/role-management"
 import { ReadFunctions } from "@/components/contract/read-functions"
 import { WriteFunctions } from "@/components/contract/write-functions"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
@@ -38,10 +40,13 @@ export default function Home() {
               <RoleChecker />
             </div>
 
+            <QuickRoleSetup />
+
             <Tabs defaultValue="read" className="w-full">
-              <TabsList className="grid w-full grid-cols-2">
+              <TabsList className="grid w-full grid-cols-3">
                 <TabsTrigger value="read">📖 Read Functions</TabsTrigger>
                 <TabsTrigger value="write">✏️ Write Functions</TabsTrigger>
+                <TabsTrigger value="roles">👑 Role Management</TabsTrigger>
               </TabsList>
 
               <TabsContent value="read" className="mt-6">
@@ -50,6 +55,10 @@ export default function Home() {
 
               <TabsContent value="write" className="mt-6">
                 <WriteFunctions />
+              </TabsContent>
+
+              <TabsContent value="roles" className="mt-6">
+                <RoleManagement />
               </TabsContent>
             </Tabs>
           </div>
