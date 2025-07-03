@@ -31,7 +31,7 @@ export default function Home() {
         <div className="container mx-auto px-4 py-8">
           <div className="flex flex-col space-y-8">
             <header className="text-center">
-              <h1 className="text-4xl font-bold text-foreground mb-2">Employee Registrationr</h1>
+              <h1 className="text-4xl font-bold text-foreground mb-2">Employee Registration</h1>
               <p className="text-muted-foreground">Employee registry and management on BSC</p>
             </header>
 
