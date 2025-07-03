@@ -6,7 +6,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Badge } from "@/components/ui/badge"
 import { Alert, AlertDescription } from "@/components/ui/alert"
 import { Shield, AlertCircle, Network } from "lucide-react"
-import { CONTRACT_ADDRESSES } from "@/web3/constants/addresses"
+import { CONTRACT_ADDRESSES } from "@/web3"
 
 // Access Control ABI for role checking
 const ACCESS_CONTROL_ABI = [

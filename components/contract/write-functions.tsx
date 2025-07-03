@@ -4,7 +4,7 @@ import type React from "react"
 
 import { useState } from "react"
 import { useAccount } from "wagmi"
-import { useUserRegistry } from "@/web3/hooks/useUserRegistry"
+import { useUserRegistry } from "@/web3"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"

@@ -1,3 +1,5 @@
+// Perfect! Here are the TypeScript interfaces and types for the employee management system:
+
 export interface Employee {
   fullName: string
   email: string

@@ -1,7 +1,7 @@
 "use client"
 
 import { useEffect, useState } from "react"
-import { Web3Provider } from "@/web3/providers/web3-provider"
+import { Web3Provider } from "@/web3"
 import { WalletConnection } from "@/components/wallet/wallet-connection"
 import { RoleChecker } from "@/components/admin/role-checker"
 import { QuickRoleSetup } from "@/components/admin/quick-role-setup"
