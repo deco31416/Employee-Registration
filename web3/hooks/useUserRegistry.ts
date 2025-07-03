@@ -280,13 +280,15 @@ export function useUserRegistry() {
   });
 
   const getSensitiveEmployeeData = (wallet: `0x${string}`) =>
-    useReadContract({
-      address: CONTRACT_ADDRESSES.USER_REGISTRY,
-      abi: USER_REGISTRY_ABI,
-      functionName: "getSensitiveEmployeeData",
-      args: [wallet],
-      query: { enabled: !!wallet },
-    });
+  useReadContract({
+    address: CONTRACT_ADDRESSES.USER_REGISTRY,
+    abi: USER_REGISTRY_ABI,
+    functionName: "getSensitiveEmployeeData",
+    args: [wallet],
+    account: walletClient?.account?.address,  // 👈
+    query: { enabled: !!wallet && !!walletClient?.account?.address },
+  });
+
 
   const isActive = (wallet: `0x${string}`) =>
     useReadContract({
