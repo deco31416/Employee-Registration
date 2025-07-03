@@ -36,7 +36,7 @@ export const WALLET_CONNECT_PROJECT_ID =
 
 // Application Metadata
 export const APP_CONFIG = {
-  name: process.env.NEXT_PUBLIC_APP_NAME || "Payroll Manager",
+  name: process.env.NEXT_PUBLIC_APP_NAME || "Employee Registration",
   description: "Web3 Payroll Management System",
   version: "1.0.0",
   defaultChain: SUPPORTED_CHAINS.BSC_TESTNET,
