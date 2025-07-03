@@ -7,9 +7,30 @@ import { ThemeProvider } from "@/components/theme-provider"
 const inter = Inter({ subsets: ["latin"] })
 
 export const metadata: Metadata = {
-  title: "Payroll Manager",
+  title: "Employee Registration",
   description: "Employee registry and payroll management on BSC",
-    generator: 'v0.dev'
+    generator: 'Deco31416',
+  applicationName: "Employee Registry",
+  keywords: [
+    "employee registry",
+    "payroll management",
+    "blockchain",
+    "BSC",
+    "smart contracts",
+    "web3",
+    "decentralized application",
+    "employee management",
+    "crypto payroll",
+    "web3 payroll",
+    "decentralized finance",
+    "dapp",
+    "employee onboarding",
+    "employee management system",
+    "web3 employee registry",
+    "blockchain payroll",
+    "smart contract payroll",
+    "employee data management",
+    "decentralized employee registry",]
 }
 
 export default function RootLayout({

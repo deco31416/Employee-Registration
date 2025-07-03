@@ -25,7 +25,7 @@ export const wagmiConfig = createConfig({
       projectId: WALLET_CONNECT_PROJECT_ID,
       showQrModal: true,
       metadata: {
-        name: "Payroll Manager",
+        name: "Employee Registration",
         description: "Web3 Payroll Management System",
         url: typeof window !== 'undefined' ? window.location.origin : '',
         icons: []

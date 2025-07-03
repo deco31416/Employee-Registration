@@ -22,7 +22,7 @@
  * import type { RegisterEmployeeParams, ContractError } from '@/web3'
  * 
  * @version 1.0.0
- * @author Payroll Manager Team
+ * @author Deco31416.com
  */
 
 // === PROVIDERS ===
