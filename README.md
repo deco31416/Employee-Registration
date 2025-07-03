@@ -23,6 +23,8 @@ It demonstrates how to use smart contracts with role-based data protection, cont
 
 > ⚠️ **Note**: This repository is *not* production-ready. It is only a **proof of concept** to validate a modular Web3 architecture pattern.
 
+![Version](https://img.shields.io/badge/version-1.0.0-blue.svg)
+
 ---
 
 ## 🚀 Main Features
