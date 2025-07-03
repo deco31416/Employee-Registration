@@ -19,7 +19,8 @@ import {
   AlertCircle, 
   Loader2,
   Users,
-  Crown
+  Crown,
+  Copy
 } from "lucide-react"
 
 const ROLE_LABELS = {
@@ -57,6 +58,13 @@ export function RoleManagement() {
     transactionHash,
   } = useUserRegistry()
 
+  // Modal state for copy feedback
+  const [copyModal, setCopyModal] = useState({
+    isOpen: false,
+    roleName: "",
+    roleId: "",
+  })
+
   const [checkForm, setCheckForm] = useState({
     role: "",
     wallet: "",
@@ -81,6 +89,64 @@ export function RoleManagement() {
   // Helper function to validate Ethereum address
   const isValidAddress = (address: string) => {
     return /^0x[a-fA-F0-9]{40}$/.test(address)
+  }
+
+  // Function to copy role ID to clipboard
+  const copyToClipboard = async (roleId: string, roleName: string) => {
+    try {
+      await navigator.clipboard.writeText(roleId)
+      
+      // Show custom modal instead of toast
+      setCopyModal({
+        isOpen: true,
+        roleName,
+        roleId,
+      })
+      
+      // Auto-hide modal after 2 seconds
+      setTimeout(() => {
+        setCopyModal({
+          isOpen: false,
+          roleName: "",
+          roleId: "",
+        })
+      }, 2000)
+      
+    } catch (error) {
+      // Fallback for browsers that don't support clipboard API
+      const textArea = document.createElement('textarea')
+      textArea.value = roleId
+      document.body.appendChild(textArea)
+      textArea.focus()
+      textArea.select()
+      try {
+        document.execCommand('copy')
+        
+        // Show custom modal for fallback too
+        setCopyModal({
+          isOpen: true,
+          roleName,
+          roleId,
+        })
+        
+        // Auto-hide modal after 2 seconds
+        setTimeout(() => {
+          setCopyModal({
+            isOpen: false,
+            roleName: "",
+            roleId: "",
+          })
+        }, 2000)
+        
+      } catch (fallbackError) {
+        toast({
+          title: "Error",
+          description: "No se pudo copiar al portapapeles.",
+          variant: "destructive",
+        })
+      }
+      document.body.removeChild(textArea)
+    }
   }
 
   // Helper function to render transaction status
@@ -421,21 +487,71 @@ export function RoleManagement() {
             {Object.entries(ROLE_LABELS).map(([roleId, label]) => (
               <div key={roleId} className="p-3 bg-muted rounded-lg">
                 <div className="flex items-center justify-between">
-                  <div>
+                  <div className="flex-1">
                     <h4 className="font-medium">{label}</h4>
                     <p className="text-sm text-muted-foreground">
                       {ROLE_DESCRIPTIONS[roleId as keyof typeof ROLE_DESCRIPTIONS]}
                     </p>
                   </div>
-                  <code className="text-xs bg-background p-1 rounded">
-                    {roleId.slice(0, 10)}...
-                  </code>
+                  <div className="flex items-center gap-2">
+                    <code className="text-xs bg-background p-1 rounded">
+                      {roleId.slice(0, 10)}...
+                    </code>
+                    <Button
+                      variant="ghost"
+                      size="sm"
+                      onClick={() => copyToClipboard(roleId, label)}
+                      className="h-8 w-8 p-0"
+                      title={`Copiar dirección completa del rol ${label}`}
+                    >
+                      <Copy className="h-4 w-4" />
+                    </Button>
+                  </div>
+                </div>
+                <div className="mt-2 text-xs text-muted-foreground font-mono break-all">
+                  {roleId}
                 </div>
               </div>
             ))}
           </div>
         </CardContent>
       </Card>
+
+      {/* Copy Success Modal */}
+      {copyModal.isOpen && (
+        <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 animate-in fade-in duration-200">
+          <div className="bg-background border rounded-lg p-6 mx-4 max-w-md w-full animate-in zoom-in duration-200">
+            <div className="flex items-center gap-3 mb-4">
+              <div className="h-10 w-10 rounded-full bg-green-500/20 flex items-center justify-center">
+                <CheckCircle className="h-5 w-5 text-green-500" />
+              </div>
+              <div>
+                <h3 className="font-semibold text-lg">¡Copiado al Portapapeles!</h3>
+                <p className="text-sm text-muted-foreground">
+                  Rol {copyModal.roleName} copiado exitosamente
+                </p>
+              </div>
+            </div>
+            
+            <div className="bg-muted rounded-lg p-3">
+              <p className="text-xs text-muted-foreground mb-1">Dirección copiada:</p>
+              <code className="text-xs font-mono break-all block bg-background p-2 rounded border">
+                {copyModal.roleId}
+              </code>
+            </div>
+            
+            <div className="flex justify-end mt-4">
+              <Button
+                variant="outline"
+                size="sm"
+                onClick={() => setCopyModal({ isOpen: false, roleName: "", roleId: "" })}
+              >
+                Cerrar
+              </Button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   )
 }
